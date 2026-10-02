@@ -65,4 +65,4 @@ jobs:
       - name: Run pytest
         working-directory: ./backend
         run: |
-          pytest -q
+          python -m pytest -q
