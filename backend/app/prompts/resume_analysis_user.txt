@@ -1,0 +1,12 @@
+Extract exact quotes into this JSON shape only:
+{{"extracted_facts":{{"skills":[],"education":[],"experience":[],"projects":[],"certifications":[]}}}}
+Each item must be copied from the resume, not paraphrased. Include explicitly
+named skills and technologies and put each fact only in its matching category.
+Use empty arrays when unsupported. Do not add fields.
+
+Resume text:
+<resume>
+{resume_text}
+</resume>
+
+{correction}

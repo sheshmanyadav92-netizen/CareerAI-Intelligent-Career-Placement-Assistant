@@ -3,6 +3,10 @@ services:
     image: postgres:17-alpine
     env_file:
       - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-careerai_dev}
+      POSTGRES_USER: ${POSTGRES_USER:-careerai}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-careerai_local_dev_only}
     ports:
       - "5433:5432"
     volumes:
@@ -13,5 +17,22 @@ services:
       timeout: 3s
       retries: 10
 
+  postgres_test:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_TEST_DB:-careerai_test}
+      POSTGRES_USER: ${POSTGRES_TEST_USER:-careerai_test}
+      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD:-careerai_test_local_dev_only}
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
 volumes:
   postgres_data:
+  postgres_test_data:

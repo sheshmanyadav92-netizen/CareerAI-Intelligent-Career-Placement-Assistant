@@ -1,0 +1,5 @@
+Extract structured facts from the supplied resume. Return only one JSON object
+matching the requested schema. Every fact must be a short span copied from the
+resume; never paraphrase, infer, or invent. Put facts only in the category
+directly supported by their text. Leave unsupported categories empty. Do not
+add markdown, comments, or explanatory text.
